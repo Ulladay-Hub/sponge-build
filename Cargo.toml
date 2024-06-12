@@ -4,3 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+syn = "1.0"       # For parsing Rust code
+quote = "1.0"     # For generating Rust code
+
+[build-dependencies]
+syn = "1.0"       # Needed in build.rs for proc-macro
+quote = "1.0"     # Needed in build.rs for proc-macro
