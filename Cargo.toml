@@ -10,3 +10,4 @@ quote = "1.0"     # For generating Rust code
 [build-dependencies]
 syn = "1.0"       # Needed in build.rs for proc-macro
 quote = "1.0"     # Needed in build.rs for proc-macro
+gtk = "0.9"       # Needed in \app\src\main.rs
