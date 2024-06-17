@@ -1,13 +1,16 @@
 [package]
-name = "sponge"
+name = "sponge-build"
 version = "0.1.0"
-edition = "2021"
+edition = "2018"
+authors = ["bradinator <imnotamilkglass@gmail.com>"]
+description = "A powerful rust module to convert Rust to ASM"
+license = "MIT"
 
 [dependencies]
-syn = "1.0"       # For parsing Rust code
-quote = "1.0"     # For generating Rust code
+clap = "4.0.0"   # Adjust the version as needed
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 
-[build-dependencies]
-syn = "1.0"       # Needed in build.rs for proc-macro
-quote = "1.0"     # Needed in build.rs for proc-macro
-gtk = "0.9"       # Needed in \app\src\main.rs
+[lib]
+name = "sponge_build"
+path = "src/lib.rs"
