@@ -2,24 +2,24 @@ pub mod decompose_tokens;
 pub mod parse_tokens;
 pub mod generate_asm;
 
-use clap::{App, Arg};
+use clap::{Command, Arg};
 use std::fs;
 
 pub fn run() {
-    let matches = App::new("sponge-build")
+    let matches = Command::new("sponge-build")
         .version("0.1.0")
         .author("bradinator <imnotamilkglass@gmail.com>")
         .about("Converts Rust code to ASM")
         .arg(
-            Arg::with_name("input")
-                .short("i")
+            Arg::new("input")
+                .short('i')
                 .long("input")
                 .takes_value(true)
                 .help("Input Rust file"),
         )
         .arg(
-            Arg::with_name("output")
-                .short("o")
+            Arg::new("output")
+                .short('o')
                 .long("output")
                 .takes_value(true)
                 .help("Output ASM file"),
