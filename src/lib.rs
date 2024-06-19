@@ -11,19 +11,19 @@ fn main() {
         .arg(Arg::new("input")
             .short('i')
             .long("input")
-            .takes_value(true)
+            .value_parser(clap::value_parser!(String))
             .required(true)
             .about("Sets the input file"))
         .arg(Arg::new("output")
             .short('o')
             .long("output")
-            .takes_value(true)
+            .value_parser(clap::value_parser!(String))
             .required(true)
             .about("Sets the output file"))
         .get_matches();
 
-    let input = matches.value_of("input").expect("Input file is required");
-    let output = matches.value_of("output").expect("Output file is required");
+    let input = matches.get_one::<String>("input").expect("Input file is required");
+    let output = matches.get_one::<String>("output").expect("Output file is required");
 
     println!("Input file: {}", input);
     println!("Output file: {}", output);
