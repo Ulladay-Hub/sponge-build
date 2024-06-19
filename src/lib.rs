@@ -1,40 +1,36 @@
-pub mod decompose_tokens;
-pub mod parse_tokens;
-pub mod generate_asm;
+mod decompose_tokens;
+mod parse_tokens;
+mod generate_asm;
 
-use clap::{Command, Arg};
-use std::fs;
+use clap::{Arg, Command};
 
-pub fn run() {
+fn main() {
     let matches = Command::new("sponge-build")
         .version("0.1.0")
-        .author("bradinator <imnotamilkglass@gmail.com>")
-        .about("Converts Rust code to ASM")
-        .arg(
-            Arg::new("input")
-                .short('i')
-                .long("input")
-                .takes_value(true)
-                .help("Input Rust file"),
-        )
-        .arg(
-            Arg::new("output")
-                .short('o')
-                .long("output")
-                .takes_value(true)
-                .help("Output ASM file"),
-        )
+        .about("A powerful rust module to convert Rust to ASM")
+        .arg(Arg::new("input")
+            .short('i')
+            .long("input")
+            .takes_value(true)
+            .required(true)
+            .about("Sets the input file"))
+        .arg(Arg::new("output")
+            .short('o')
+            .long("output")
+            .takes_value(true)
+            .required(true)
+            .about("Sets the output file"))
         .get_matches();
 
     let input = matches.value_of("input").expect("Input file is required");
     let output = matches.value_of("output").expect("Output file is required");
 
-    let rust_code = fs::read_to_string(input).expect("Unable to read input file");
-    let tokens = decompose_tokens::decompose(&rust_code);
-    fs::write("tokens.json", serde_json::to_string(&tokens).expect("Failed to serialize tokens"))
-        .expect("Unable to write tokens.json");
+    println!("Input file: {}", input);
+    println!("Output file: {}", output);
 
+    let tokens = decompose_tokens::decompose(input).expect("Failed to decompose tokens");
     let parsed_tokens = parse_tokens::parse(tokens);
     let asm_code = generate_asm::generate(&parsed_tokens);
-    fs::write(output, asm_code).expect("Unable to write output ASM file");
+
+    std::fs::write(output, asm_code).expect("Failed to write to output file");
 }
