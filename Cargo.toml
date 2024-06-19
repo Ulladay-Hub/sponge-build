@@ -7,7 +7,7 @@ description = "A powerful rust module to convert Rust to ASM"
 license = "MIT"
 
 [dependencies]
-clap = { version = "4.0.0", features = ["derive"] }
+clap = { version = "4.5.7", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
