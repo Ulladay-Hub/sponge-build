@@ -13,13 +13,13 @@ fn main() {
             .long("input")
             .value_parser(clap::value_parser!(String))
             .required(true)
-            .about("Sets the input file"))
+            .help("Sets the input file"))
         .arg(Arg::new("output")
             .short('o')
             .long("output")
             .value_parser(clap::value_parser!(String))
             .required(true)
-            .about("Sets the output file"))
+            .help("Sets the output file"))
         .get_matches();
 
     let input = matches.get_one::<String>("input").expect("Input file is required");
