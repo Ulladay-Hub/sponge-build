@@ -1,13 +1,19 @@
-use crate::decompose_tokens::Token;
+use crate::parse_tokens::ParsedToken;
 
-pub fn generate(tokens: &[Token]) -> String {
+pub fn generate(tokens: &[ParsedToken]) -> String {
     let mut asm_code = String::new();
 
     for token in tokens {
-        match token.kind.as_str() {
-            "Keyword" if token.value == "fn" => asm_code.push_str("; Function definition\n"),
-            "Identifier" if token.value == "main" => asm_code.push_str("main:\n"),
-            "Identifier" if token.value == "REG_1" => asm_code.push_str("mov REG_1, 30\n"),
+        match token.instruction.as_str() {
+            "FUNCTION" => {
+                asm_code.push_str(&format!("; Function: {}\n", token.operand.as_ref().unwrap()));
+            }
+            "DECLARE" => {
+                asm_code.push_str(&format!("; Declare variable: {}\n", token.operand.as_ref().unwrap()));
+            }
+            "LOAD" => {
+                asm_code.push_str(&format!("MOV {}, {}\n", token.operand.as_ref().unwrap(), token.operand.as_ref().unwrap()));
+            }
             _ => {}
         }
     }
