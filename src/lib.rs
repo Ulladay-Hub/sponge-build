@@ -1,10 +1,10 @@
-mod decompose_tokens;
-mod parse_tokens;
-mod generate_asm;
+pub mod decompose_tokens;
+pub mod parse_tokens;
+pub mod generate_asm;
 
 use clap::{Arg, Command};
 
-fn main() {
+pub fn run() {
     let matches = Command::new("sponge-build")
         .version("0.1.0")
         .about("A powerful rust module to convert Rust to ASM")

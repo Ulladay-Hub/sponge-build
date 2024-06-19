@@ -8,7 +8,7 @@ pub struct Token {
 }
 
 pub fn decompose(filename: &str) -> Result<Vec<Token>, Box<dyn std::error::Error>> {
-    let content = fs::read_to_string(filename)?;
+    let _content = fs::read_to_string(filename)?;
     let tokens = vec![
         Token { kind: "Keyword".to_string(), value: "fn".to_string() },
         Token { kind: "Identifier".to_string(), value: "main".to_string() },
