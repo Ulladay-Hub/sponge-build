@@ -1,3 +1,5 @@
+use sponge_build::run;
+
 fn main() {
-    sponge_build::run();
+    run();
 }
