@@ -1,0 +1,5 @@
+2024-06-21  Bradinator  <imnotamilkglass@gmail.com>
+
+    Changed README client typo
+
+    * README.md: Corrected a typo in the CLI section.
