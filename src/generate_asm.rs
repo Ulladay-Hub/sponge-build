@@ -14,7 +14,6 @@ pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
             ParsedToken::VariableAssignment { name, value } => {
                 asm_code.push_str(&format!("    mov {}, {}\n", name, value));
             }
-            _ => {}
         }
     }
 
