@@ -4,7 +4,6 @@ pub mod generate_asm;
 
 use clap::{Arg, Command};
 use std::fs;
-use std::process;
 
 pub fn run() {
     let matches = Command::new("sponge-build")

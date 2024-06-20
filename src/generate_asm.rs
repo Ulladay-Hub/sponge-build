@@ -1,6 +1,6 @@
 use crate::parse_tokens::ParsedToken;
 
-pub fn generate(tokens: &[ParsedToken]) -> String {
+pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
     let mut asm_code = String::new();
 
     asm_code.push_str("section .data\n\n");
@@ -9,9 +9,12 @@ pub fn generate(tokens: &[ParsedToken]) -> String {
     asm_code.push_str("    global _start\n\n");
     asm_code.push_str("_start:\n");
 
-    for token in tokens {
-        if let ParsedToken::VariableAssignment { name, value } = token {
-            asm_code.push_str(&format!("    mov {}, {}\n", name, value));
+    for token in parsed_tokens {
+        match token {
+            ParsedToken::VariableAssignment { name, value } => {
+                asm_code.push_str(&format!("    mov {}, {}\n", name, value));
+            }
+            _ => {}
         }
     }
 
