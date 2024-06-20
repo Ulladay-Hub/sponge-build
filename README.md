@@ -113,7 +113,7 @@ Sponge also provides a simple CLI to facilitate the conversion process. The avai
 2. Run the following command in your terminal to generate the ASM code:
 
     ```sh
-    sponge build -i script.rs -o script.asm
+    sponge -i script.rs -o script.asm
     ```
 
     This will produce the `script.asm` file:
