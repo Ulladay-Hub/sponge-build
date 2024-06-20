@@ -1,10 +1,13 @@
 [package]
-name = "sponge-build"
+name = "sponge"
 version = "0.2.0"
-authors = ["bradinator <imnotamilkglass@gmail.com>"]
+authors = ["Bradinator <imnotamilkglass@gmail.com>"]
 edition = "2021"
 description = "A powerful rust module to convert Rust to ASM"
 license = "MIT"
+homepage = "https://github.com/Ulladay-Hub/sponge-build"  # Update this with your actual URL
+repository = "https://github.com/Ulladay-Hub/sponge-build"  # Update this with your actual URL
+readme = "README.md"
 
 [dependencies]
 clap = { version = "4.5.7", features = ["derive"] }
@@ -12,5 +15,5 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 [lib]
-name = "sponge_build"
+name = "sponge-build"
 path = "src/lib.rs"
