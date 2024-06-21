@@ -24,7 +24,7 @@ pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
                         text_section.push_str(&format!("    mov {}, {}\n", name, value));
                     }
                     "&str" => {
-                        data_section.push_str(&format!("    {} db '{}', 0x0A", name, value_with_newline));
+                        data_section.push_str(&format!("    {} db '{}', 0x0A", name, value));
                     }
                     _ => {
                         // Add non supported variable type warning
