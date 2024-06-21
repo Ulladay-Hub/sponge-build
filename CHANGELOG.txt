@@ -3,3 +3,9 @@
     Changed README client typo
 
     * README.md: Corrected a typo in the CLI section.
+    
+2024-6-22 Bradinator <imnotamilkglass@gmail.com>
+
+    Merged all number value assignments seperated by or gate
+    
+    * src/generate_asm.rs: Removed all number gates and replaced for one
