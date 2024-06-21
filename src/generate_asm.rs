@@ -24,14 +24,12 @@ pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
                         text_section.push_str(&format!("    mov {}, {}\n", name, value));
                     }
                     "&str" => {
-                        let value_with_newline = if value.contains('\n') {
-                            value.clone()
-                        } else {
-                            format!("{}{}", value, '\n')
-                        };
                         data_section.push_str(&format!("    {} db '{}', 0x0A", name, value_with_newline));
                     }
-                    _ => {text_section.push_str("NOT SUPPORTED OR INVALID VARIABLE TYPE")}
+                    _ => {
+                        // Add non supported variable type warning
+                        text_section.push_str("; NOT SUPPORTED OR INVALID VARIABLE TYPE. WILL NOT BE IMPORTED")
+                    }
                 }
             }
             ParsedToken::Function { name, body } => {
