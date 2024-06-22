@@ -14,14 +14,24 @@ pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
         match token {
             ParsedToken::Variable { name, var_type, value } => {
                 match var_type.as_str() {
-                    "i32" | "i64" | "u32" | "u64" => { // Add more move variables here
+                    "i32" => {
                         text_section.push_str(&format!("    mov {}, {}\n", name, value));
                     }
-                    
-                    _ => {
-                        // Add non supported variable type warning
-                        text_section.push_str("; NOT SUPPORTED OR INVALID VARIABLE TYPE. WILL NOT BE IMPORTED")
+                    "i64" => {
+                        text_section.push_str(&format!("    mov {}, {}\n", name, value));
                     }
+                    "u32" => {
+                        text_section.push_str(&format!("    mov {}, {}\n", name, value));
+                    }
+                    "&str" => {
+                        let value_with_newline = if value.contains('\n') {
+                            value.clone()
+                        } else {
+                            format!("{}{}", value, '\n')
+                        };
+                        data_section.push_str(&format!("    {} db '{}', 0x0A\n", name, value_with_newline));
+                    }
+                    _ => {}
                 }
             }
             ParsedToken::Function { name, body } => {
