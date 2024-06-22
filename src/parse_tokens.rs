@@ -18,7 +18,7 @@ pub fn parse(tokens: Vec<Token>) -> Vec<ParsedToken> {
                     let mut body = Vec::new();
                     while let Some(body_token) = iter.next() {
                         if let Token::Symbol(sym) = &body_token {
-                            if sym == "}" {
+                            if *sym == '}' {
                                 break;
                             }
                         }
@@ -29,15 +29,15 @@ pub fn parse(tokens: Vec<Token>) -> Vec<ParsedToken> {
             }
             Token::Identifier(name) => {
                 if let Some(Token::Symbol(sym)) = iter.next() {
-                    if sym == ":" {
+                    if sym == ':' {
                         if let Some(Token::Keyword(var_type)) = iter.next() {
                             if let Some(Token::Symbol(sym)) = iter.next() {
-                                if sym == "=" {
+                                if sym == '=' {
                                     if let Some(Token::Literal(value)) = iter.next() {
                                         parsed_tokens.push(ParsedToken::VariableAssignment {
                                             name,
                                             var_type,
-                                            value,
+                                            value: value.to_string(),
                                         });
                                     }
                                 }
