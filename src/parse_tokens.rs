@@ -2,8 +2,10 @@ use crate::decompose_tokens::Token;
 
 #[derive(Debug, Clone)]
 pub enum ParsedToken {
-    VariableAssignment { name: String, value: i32 },
+    Variable { name: String, var_type: String, value: String },
+    Function { name: String, body: Vec<String> },
 }
+
 
 pub fn parse(tokens: Vec<Token>) -> Vec<ParsedToken> {
     let mut parsed_tokens = Vec::new();
