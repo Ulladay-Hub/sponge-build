@@ -12,15 +12,9 @@ pub fn generate(parsed_tokens: &[ParsedToken]) -> String {
 
     for token in parsed_tokens {
         match token {
-            ParsedToken::Variable { name, var_type, value } => {
+            ParsedToken::VariableAssignment { name, var_type, value } => {
                 match var_type.as_str() {
-                    "i32" => {
-                        text_section.push_str(&format!("    mov {}, {}\n", name, value));
-                    }
-                    "i64" => {
-                        text_section.push_str(&format!("    mov {}, {}\n", name, value));
-                    }
-                    "u32" => {
+                    "i32" | "i64" | "u32" => {
                         text_section.push_str(&format!("    mov {}, {}\n", name, value));
                     }
                     "&str" => {
