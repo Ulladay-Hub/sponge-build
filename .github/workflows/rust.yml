@@ -19,4 +19,4 @@ jobs:
     - name: Build
       run: cargo build
     - name: Run tests
-      run: cargo build --dry-run
+      run: cargo test
